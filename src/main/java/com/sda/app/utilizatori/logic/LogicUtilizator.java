@@ -51,24 +51,13 @@ public class LogicUtilizator {
         session.close();
     }
 
-    public void adaugaMasina(Masina masina) {
-        Session session = bl.getSession();
-        session.beginTransaction();
-        session.save(masina);
+//    public List<Utilizator> listeazaMasinaUnuiUtilizator(){
+//        Session session = bl.getSession();
+//        session.beginTransaction();
+//
+//        List<Utilizator> utilizatori = session.createQuery(criteria).getResultList();
+//        session.close();
+//        return utilizatori;
+//    }
 
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    public List<Masina> listeazaMasini() {
-        Session session = bl.getSession();
-        session.beginTransaction();
-
-        CriteriaQuery<Masina> criteria = session.getCriteriaBuilder().createQuery(Masina.class); //pentru a nu mai scrie un SELECT normal
-        criteria.from(Masina.class);
-
-        List<Masina> masini = session.createQuery(criteria).getResultList();
-        session.close();
-        return masini;
-    }
 }

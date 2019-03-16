@@ -1,6 +1,7 @@
 package com.sda.app;
 
 import com.sda.app.masini.db.Masina;
+import com.sda.app.masini.logic.LogicMasina;
 import com.sda.app.ui.Meniu;
 import com.sda.app.utilizatori.db.Utilizator;
 import com.sda.app.utilizatori.logic.LogicUtilizator;
@@ -20,6 +21,7 @@ public class Bl {
     public static Metadata metadata;
     public static SessionFactory sessionFactory;
     LogicUtilizator logicUtilizator;
+    LogicMasina logicMasina;
 
     public SessionFactory getSessionFactory() {
 
@@ -76,9 +78,9 @@ public class Bl {
     }
 
     public void adaugaMasina(Masina masina){
-        logicUtilizator.adaugaMasina(masina);
+        logicMasina.adaugaMasina(masina);
     }
     public List<Masina> listeazaMasini(){
-        return logicUtilizator.listeazaMasini();
+        return logicMasina.listeazaMasini();
     }
 }

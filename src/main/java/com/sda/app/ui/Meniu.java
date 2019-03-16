@@ -3,8 +3,6 @@ package com.sda.app.ui;
 import com.sda.app.Bl;
 import com.sda.app.masini.db.Masina;
 import com.sda.app.utilizatori.db.Utilizator;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Scanner;
 
@@ -64,6 +62,7 @@ public class Meniu {
         System.out.println("6. Inregistreaza masina unui utilizator");
         System.out.println("7. Deinregistreaza masina");
         System.out.println("8. Sterge masina");
+        System.out.println("9. Sterge utilizator");
         System.out.println("10. Exit");
     }
 
@@ -87,9 +86,13 @@ public class Meniu {
                 case 4:
                     listeazaMasini();
                     break;
+                case 5:
+                    //listeazaMasinaUnuiUtilizator();
                 case 6:
                     inregistreazaMasinaUnuiUtilizator(scan);
                     break;
+//                case 7:
+//                    deinregistreazaMasina();
                 case 10:
                     return;
             }

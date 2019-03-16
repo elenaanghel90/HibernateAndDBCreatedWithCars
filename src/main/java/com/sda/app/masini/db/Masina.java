@@ -3,13 +3,15 @@ package com.sda.app.masini.db;
 import com.sda.app.utilizatori.db.Utilizator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="Masini")
+@Table(name = "Masini")
 public class Masina {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //identity lasi baza de date sa genereze ea in fucntie de cum stie
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //identity lasi baza de date sa genereze ea in fucntie de cum stie
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "marca")
@@ -21,13 +23,8 @@ public class Masina {
     @Column(name = "numar")
     private String numar;
 
-//    @ManyToMany()
-//    @JoinTable(
-//            name = "utilizatori_masini",   //aici pui tabelul de legatura
-//            joinColumns = {@JoinColumn(name = "id_utilizator")}, //care face legatura cu cealata coloana a enitatii care e owner de coloana. Utilizatorii i-am stabilit ca fiind owner
-//            inverseJoinColumns = @JoinColumn(name = "id_masina") //care face legatura cu cealata coloana a enitatii care nu e owner de coloana
-//    )
-
+    @ManyToMany(mappedBy = "masini", fetch = FetchType.EAGER)
+    private List<Utilizator> utilizatori;
 
     public Masina(Integer id, String marca, String model, String numar) {
         this.id = id;
@@ -36,7 +33,7 @@ public class Masina {
         this.numar = numar;
     }
 
-    public Masina(){
+    public Masina() {
 
     }
 
