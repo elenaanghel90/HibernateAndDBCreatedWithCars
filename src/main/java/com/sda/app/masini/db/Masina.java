@@ -21,11 +21,23 @@ public class Masina {
     @Column(name = "numar")
     private String numar;
 
+//    @ManyToMany()
+//    @JoinTable(
+//            name = "utilizatori_masini",   //aici pui tabelul de legatura
+//            joinColumns = {@JoinColumn(name = "id_utilizator")}, //care face legatura cu cealata coloana a enitatii care e owner de coloana. Utilizatorii i-am stabilit ca fiind owner
+//            inverseJoinColumns = @JoinColumn(name = "id_masina") //care face legatura cu cealata coloana a enitatii care nu e owner de coloana
+//    )
+
+
     public Masina(Integer id, String marca, String model, String numar) {
         this.id = id;
         this.marca = marca;
         this.model = model;
         this.numar = numar;
+    }
+
+    public Masina(){
+
     }
 
     public Integer getId() {
@@ -58,5 +70,37 @@ public class Masina {
 
     public void setNumar(String numar) {
         this.numar = numar;
+    }
+
+    @Override
+    public String toString() {
+        return "Masina{" +
+                "id=" + id +
+                ", marca='" + marca + '\'' +
+                ", model='" + model + '\'' +
+                ", numar='" + numar + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Masina masina = (Masina) o;
+
+        if (id != null ? !id.equals(masina.id) : masina.id != null) return false;
+        if (marca != null ? !marca.equals(masina.marca) : masina.marca != null) return false;
+        if (model != null ? !model.equals(masina.model) : masina.model != null) return false;
+        return numar != null ? numar.equals(masina.numar) : masina.numar == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (marca != null ? marca.hashCode() : 0);
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + (numar != null ? numar.hashCode() : 0);
+        return result;
     }
 }
