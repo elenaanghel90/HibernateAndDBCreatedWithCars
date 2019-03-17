@@ -6,6 +6,8 @@ import com.sda.app.utilizatori.db.Utilizator;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class LogicUtilizator {
@@ -51,13 +53,19 @@ public class LogicUtilizator {
         session.close();
     }
 
-//    public List<Utilizator> listeazaMasinaUnuiUtilizator(){
-//        Session session = bl.getSession();
-//        session.beginTransaction();
-//
-//        List<Utilizator> utilizatori = session.createQuery(criteria).getResultList();
-//        session.close();
-//        return utilizatori;
-//    }
+    public List<Utilizator> listeazaMasinaUnuiUtilizator(){
+        Session session = bl.getSession();
+        session.beginTransaction();
 
-}
+        CriteriaQuery<Utilizator> criteria = session.getCriteriaBuilder().createQuery(Utilizator.class);
+        criteria.from(Utilizator.class);
+
+        List<Utilizator> utilizatoriSiMasinaAferenta = session.createQuery(criteria).getResultList();
+        session.close();
+        return utilizatoriSiMasinaAferenta;
+
+        }
+
+    }
+
+

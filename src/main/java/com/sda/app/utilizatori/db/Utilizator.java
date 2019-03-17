@@ -15,7 +15,7 @@ public class Utilizator {
     @Column(name = "nume")
     private String nume;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @JoinTable(
             name = "utilizatori_masini",   //aici pui tabelul de legatura
             joinColumns = {@JoinColumn(name = "id_utilizator")}, //care face legatura cu cealata coloana a enitatii care e owner de coloana. Utilizatorii i-am stabilit ca fiind owner

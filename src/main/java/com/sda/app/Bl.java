@@ -66,21 +66,31 @@ public class Bl {
 
 
     public void adaugaUtilizator(Utilizator utilizator) {
+
         logicUtilizator.adaugaUtilizator(utilizator);
     }
 
-    public List<Utilizator> listeazaUtilizatori(){
+    public List<Utilizator> listeazaUtilizatori() {
         return logicUtilizator.listeazaUtilizatori();
     }
 
-    public void inregistreazaMasinaUnuiUtilizator(Integer id_masina, Integer id_utilizator){
+    public void inregistreazaMasinaUnuiUtilizator(Integer id_masina, Integer id_utilizator) {
         logicUtilizator.inregistreazaMasinaUnuiUtilizator(id_masina, id_utilizator);
     }
 
-    public void adaugaMasina(Masina masina){
+    public void adaugaMasina(Masina masina) {
         logicMasina.adaugaMasina(masina);
     }
-    public List<Masina> listeazaMasini(){
+
+    public List<Masina> listeazaMasini() {
         return logicMasina.listeazaMasini();
+    }
+
+    public List<Utilizator> listeazaMasinaUnuiUtilizator() {
+        return logicUtilizator.listeazaMasinaUnuiUtilizator();
+    }
+
+    public void deinregistreazaMasina(Masina masina) {
+        logicMasina.deinregistreazaMasina(masina);
     }
 }

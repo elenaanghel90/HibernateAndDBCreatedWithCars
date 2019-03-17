@@ -2,13 +2,16 @@ package com.sda.app.masini.logic;
 
 import com.sda.app.Bl;
 import com.sda.app.masini.db.Masina;
+import com.sun.xml.bind.v2.model.core.ID;
 import org.hibernate.Session;
 
+import javax.persistence.Id;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public class LogicMasina {
     private Bl blMasina;
+    private Masina id;
 
     public LogicMasina(Bl blMasina) {
         this.blMasina = blMasina;
@@ -33,5 +36,14 @@ public class LogicMasina {
         List<Masina> masini = session.createQuery(criteria).getResultList();
         session.close();
         return masini;
+    }
+    public void deinregistreazaMasina(Masina id){
+        Session session = blMasina.getSession();
+        session.beginTransaction();
+        Masina masinaDeDeinregistrat = session.find(Masina.class,id);
+        session.delete(masinaDeDeinregistrat);
+
+        session.getTransaction().commit();
+        session.close();
     }
 }

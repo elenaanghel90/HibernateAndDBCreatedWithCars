@@ -23,7 +23,7 @@ public class Masina {
     @Column(name = "numar")
     private String numar;
 
-    @ManyToMany(mappedBy = "masini", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "masini")
     private List<Utilizator> utilizatori;
 
     public Masina(Integer id, String marca, String model, String numar) {

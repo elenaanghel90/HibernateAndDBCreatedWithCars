@@ -3,6 +3,7 @@ package com.sda.app.ui;
 import com.sda.app.Bl;
 import com.sda.app.masini.db.Masina;
 import com.sda.app.utilizatori.db.Utilizator;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,8 @@ public class Meniu {
     public Meniu(Bl bl) {
         this.bl = bl;
     }
-    public void adaugaUtilizator(Scanner scan){
+
+    public void adaugaUtilizator(Scanner scan) {
         System.out.println("Care este numele utilizatorului?");
         String nume = scan.nextLine();
         bl.adaugaUtilizator(new Utilizator(null, nume));
@@ -26,21 +28,22 @@ public class Meniu {
             System.out.println("--------------------------");
         }
     }
-        public void inregistreazaMasinaUnuiUtilizator(Scanner scan){
-            System.out.println("Id_masina = ?");
-            Integer id_masina = scan.nextInt();
-            System.out.println("Id_utilizator =  ?");
-            Integer id_utilizator = scan.nextInt();
-            bl.inregistreazaMasinaUnuiUtilizator(id_masina,id_utilizator);
-        }
 
-        public void adaugaMasina(Scanner scan){
-            System.out.println("Care este masina de adaugat astfel: marca, model, numar ");
-            String marca = scan.nextLine();
-            String model = scan.nextLine();
-            String numar =scan.nextLine();
-            bl.adaugaMasina(new Masina(null, marca, model, numar));
-        }
+    public void inregistreazaMasinaUnuiUtilizator(Scanner scan) {
+        System.out.println("Id_masina = ?");
+        Integer id_masina = scan.nextInt();
+        System.out.println("Id_utilizator =  ?");
+        Integer id_utilizator = scan.nextInt();
+        bl.inregistreazaMasinaUnuiUtilizator(id_masina, id_utilizator);
+    }
+
+    public void adaugaMasina(Scanner scan) {
+        System.out.println("Care este masina de adaugat astfel: marca, model, numar ");
+        String marca = scan.nextLine();
+        String model = scan.nextLine();
+        String numar = scan.nextLine();
+        bl.adaugaMasina(new Masina(null, marca, model, numar));
+    }
 
     public void listeazaMasini() {
         List<Masina> masini = bl.listeazaMasini();
@@ -53,6 +56,32 @@ public class Meniu {
         }
     }
 
+    public void listeazaMasinaUnuiUtilizator(Scanner scan) {
+        List<Utilizator> masinaUnuiUtilizator = bl.listeazaMasinaUnuiUtilizator();
+        System.out.println("IdUtilizatorMasina =  ?");
+        Integer idUtilizatorMasina = scan.nextInt();
+        for (Utilizator u : masinaUnuiUtilizator) {
+            if (idUtilizatorMasina == u.getId()) {
+                System.out.println("Id: " + idUtilizatorMasina);
+                System.out.println("nume: " + u.getNume());
+                System.out.println("Are masina: " + u.getMasini());
+            }
+        }
+    }
+
+//    public void deinregistreazaMasina(Scanner scan) {
+//        Masina masinaDeSters = bl.deinregistreazaMasina();
+//        System.out.println("Care este masina de deinregistrat ? ");
+//        Integer idMasinaDeDeinregistrat = scan.nextInt();
+//        for (Masina u : masinaDeSters) {
+//            if (idMasinaDeDeinregistrat == u.getId()) {
+//                System.out.println("Id: " + idMasinaDeDeinregistrat);
+//                System.out.println("marca: " + u.getMarca());
+//
+//            }
+//        }
+//    }
+
     private void printMainMeniu() {
         System.out.println("1. Adauga utilizator");
         System.out.println("2. Adauga masina");
@@ -60,7 +89,7 @@ public class Meniu {
         System.out.println("4. Listeaza masini");
         System.out.println("5. Listeaza masina unui utilizator");
         System.out.println("6. Inregistreaza masina unui utilizator");
-        System.out.println("7. Deinregistreaza masina");
+        System.out.println("7. Deinregistreaza masina");//stergi masina din lista de masini si stergi asocierile dintre masina si utilizator
         System.out.println("8. Sterge masina");
         System.out.println("9. Sterge utilizator");
         System.out.println("10. Exit");
@@ -87,12 +116,14 @@ public class Meniu {
                     listeazaMasini();
                     break;
                 case 5:
-                    //listeazaMasinaUnuiUtilizator();
+                    listeazaMasinaUnuiUtilizator(scan);
+                    break;
                 case 6:
                     inregistreazaMasinaUnuiUtilizator(scan);
                     break;
-//                case 7:
-//                    deinregistreazaMasina();
+                case 7:
+                    deinregistreazaMasina();
+                    break;
                 case 10:
                     return;
             }
