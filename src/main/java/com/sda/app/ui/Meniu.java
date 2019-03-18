@@ -69,18 +69,15 @@ public class Meniu {
         }
     }
 
-//    public void deinregistreazaMasina(Scanner scan) {
-//        Masina masinaDeSters = bl.deinregistreazaMasina();
-//        System.out.println("Care este masina de deinregistrat ? ");
-//        Integer idMasinaDeDeinregistrat = scan.nextInt();
-//        for (Masina u : masinaDeSters) {
-//            if (idMasinaDeDeinregistrat == u.getId()) {
-//                System.out.println("Id: " + idMasinaDeDeinregistrat);
-//                System.out.println("marca: " + u.getMarca());
-//
-//            }
-//        }
-//    }
+    public void deinregistreazaMasina(Scanner scan) {
+        System.out.println("Care este id-ul masinii de deinregistrat ? ");
+        Integer idMasinaDeDeinregistrat = scan.nextInt();
+        System.out.println("Care este id-ul utiliaztorului ? ");
+        Integer idUtilizatoruluiDeLaCareStergemMasina = scan.nextInt();
+        Masina masinaDeSters = bl.deinregistreazaMasina(idMasinaDeDeinregistrat,idUtilizatoruluiDeLaCareStergemMasina);
+
+        System.out.println("A fost stearsa masina cu marca: " + masinaDeSters.getMarca() + " de la utilizatorul: " + idMasinaDeDeinregistrat);
+    }
 
     private void printMainMeniu() {
         System.out.println("1. Adauga utilizator");
@@ -89,10 +86,11 @@ public class Meniu {
         System.out.println("4. Listeaza masini");
         System.out.println("5. Listeaza masina unui utilizator");
         System.out.println("6. Inregistreaza masina unui utilizator");
-        System.out.println("7. Deinregistreaza masina");//stergi masina din lista de masini si stergi asocierile dintre masina si utilizator
+        System.out.println("7. Deinregistreaza masina");//stergi masina din lista de masini si stergi asocierile dintre masina si utilizator (in logic utilizator, ca utilizator e ownerul)
         System.out.println("8. Sterge masina");
         System.out.println("9. Sterge utilizator");
         System.out.println("10. Exit");
+        System.out.println();
     }
 
     public void init() {
@@ -100,7 +98,6 @@ public class Meniu {
         while (true) {
             printMainMeniu();
             int choice = scan.nextInt();
-            scan.nextLine();
 
             switch (choice) {
                 case 1:
@@ -122,7 +119,7 @@ public class Meniu {
                     inregistreazaMasinaUnuiUtilizator(scan);
                     break;
                 case 7:
-                    deinregistreazaMasina();
+                    deinregistreazaMasina(scan);
                     break;
                 case 10:
                     return;

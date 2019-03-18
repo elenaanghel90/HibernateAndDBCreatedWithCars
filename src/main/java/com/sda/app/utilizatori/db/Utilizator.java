@@ -21,9 +21,7 @@ public class Utilizator {
             joinColumns = {@JoinColumn(name = "id_utilizator")}, //care face legatura cu cealata coloana a enitatii care e owner de coloana. Utilizatorii i-am stabilit ca fiind owner
             inverseJoinColumns = @JoinColumn(name = "id_masina") //care face legatura cu cealata coloana a enitatii care nu e owner de coloana
     )
-
     private List<Masina> masini;
-
 
     public Utilizator(Integer id, String nume) {
         this.id = id;

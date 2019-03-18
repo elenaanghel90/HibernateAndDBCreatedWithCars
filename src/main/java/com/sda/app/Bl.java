@@ -44,6 +44,7 @@ public class Bl {
 
     public void start() {
         this.logicUtilizator = new LogicUtilizator(this);
+        this.logicMasina =new LogicMasina(this);
         Meniu meniu = new Meniu(this);
         meniu.init(); //ca sa ne afiseze meniul
     }
@@ -90,7 +91,7 @@ public class Bl {
         return logicUtilizator.listeazaMasinaUnuiUtilizator();
     }
 
-    public void deinregistreazaMasina(Masina masina) {
-        logicMasina.deinregistreazaMasina(masina);
+    public Masina deinregistreazaMasina(Integer idMasina, Integer idUtilizator) {
+        return logicMasina.deinregistreazaMasina(idMasina,idUtilizator);
     }
 }

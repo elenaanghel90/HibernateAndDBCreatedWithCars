@@ -2,6 +2,7 @@ package com.sda.app.masini.logic;
 
 import com.sda.app.Bl;
 import com.sda.app.masini.db.Masina;
+import com.sda.app.utilizatori.db.Utilizator;
 import com.sun.xml.bind.v2.model.core.ID;
 import org.hibernate.Session;
 
@@ -37,13 +38,17 @@ public class LogicMasina {
         session.close();
         return masini;
     }
-    public void deinregistreazaMasina(Masina id){
+    public Masina deinregistreazaMasina(Integer idMasina, Integer idUtilizator){
         Session session = blMasina.getSession();
         session.beginTransaction();
-        Masina masinaDeDeinregistrat = session.find(Masina.class,id);
-        session.delete(masinaDeDeinregistrat);
+
+        Utilizator utilizator = session.get(Utilizator.class, idUtilizator);
+        Masina masinaDeDeinregistrat = session.find(Masina.class,idMasina);
+        utilizator.getMasini().remove(masinaDeDeinregistrat);
+        session.update(utilizator);
 
         session.getTransaction().commit();
         session.close();
+        return masinaDeDeinregistrat;
     }
 }
